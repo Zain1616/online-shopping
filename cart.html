@@ -206,17 +206,33 @@ function removeItem(index) {
   renderCart();
 }
 
-function placeOrder() {
+
+  function placeOrder() {
   if (cart.length === 0) {
     alert("Cart is empty");
     return;
   }
 
-  alert("Order placed successfully!");
-  localStorage.removeItem("cart");
-  cart = [];
-  renderCart();
-}
+  fetch("http://localhost:3000/order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ items: cart })
+  })
+  .then(res => res.text())
+  .then(data => {
+    alert("Order sent to server ✔");
+
+    localStorage.removeItem("cart");
+    cart = [];
+    renderCart();
+  })
+  .catch(err => {
+    alert("Server not reachable ❌");
+    console.log(err);
+  });
+  }
 
 renderCart();
 </script>
