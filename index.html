@@ -396,39 +396,46 @@ transform: scale(1.05);
  <div class="item4"><button>Pizza</button></div>
 </div>
 <div class="section2">
-<div class="menu-item itema" data-name="cabbage"><button onclick="addItem(750)">k750. ADD</button></div>
-<div class="menu-item itemb" data-name="carrot"><button onclick="addItem(300)">k300. ADD</button></div>
-<div class="menu-item itemc" data-name="green pepper"><button onclick="addItem(150)">k150. ADD</button></div>
-<div class="menu-item itemd" data-name="apples"><button onclick="addItem(400)">k400. ADD</button></div>
-<div class="menu-item iteme" data-name="chicken"><button onclick="addItem(19500)">k19500. ADD</button></div>
-<div class="menu-item itemf" data-name="sausage"><button onclick="addItem(8650)">k8650. ADD</button></div>
-<div class="menu-item itemg" data-name="eggs"><button onclick="addItem(3250)">k3250. ADD</button></div>
-<div class="menu-item itemh" data-name="fish"><button onclick="addItem(1870)">k1870. ADD</button></div>
-<div class="menu-item itemi" data-name="fanta or coca-cola or coke"><button onclick="addItem(750)">k750. ADD</button></div>
-<div class="menu-item itemj" data-name="fanta or orange"><button onclick="addItem(750)">k750. ADD</button></div>
-<div class="menu-item itemk" data-name="champagne"><button onclick="addItem(23600)">k23600. ADD</button></div>
-<div class="menu-item iteml" data-name="ice cream"><button onclick="addItem(1300)">k1300. ADD</button></div>
-<div class="menu-item itemm" data-name="chips or fries"><button onclick="addItem(11000)">k11000. ADD</button></div>
-<div class="menu-item itemn" data-name="pizza"><button onclick="addItem(15500)">k15500. ADD</button></div>
-<div class="menu-item itemo" data-name="noodles or sparghetti"><button onclick="addItem(3000)">k3000. ADD</button></div>
-<div class="menu-item itemp" data-name="rice"><button onclick="addItem(6850)">k6850. ADD</button></div>
+<div class="menu-item itema" data-name="cabbage"><button onclick="addItem(this, 750)">k750. ADD</button></div>
+<div class="menu-item itemb" data-name="carrot"><button onclick="addItem(this, 300)">k300. ADD</button></div>
+<div class="menu-item itemc" data-name="green pepper"><button onclick="addItem(this, 150)">k150. ADD</button></div>
+<div class="menu-item itemd" data-name="apples"><button onclick="addItem(this, 400)">k400. ADD</button></div>
+<div class="menu-item iteme" data-name="chicken"><button onclick="addItem(this, 19500)">k19500. ADD</button></div>
+<div class="menu-item itemf" data-name="sausage"><button onclick="addItem(this, 8650)">k8650. ADD</button></div>
+<div class="menu-item itemg" data-name="eggs"><button onclick="addItem(this, 3250)">k3250. ADD</button></div>
+<div class="menu-item itemh" data-name="fish"><button onclick="addItem(this, 1870)">k1870. ADD</button></div>
+<div class="menu-item itemi" data-name="fanta or coca-cola or coke"><button onclick="addItem(this, 750)">k750. ADD</button></div>
+<div class="menu-item itemj" data-name="fanta or orange"><button onclick="addItem(this, 750)">k750. ADD</button></div>
+<div class="menu-item itemk" data-name="champagne"><button onclick="addItem(this, 23600)">k23600. ADD</button></div>
+<div class="menu-item iteml" data-name="ice cream"><button onclick="addItem(this, 1300)">k1300. ADD</button></div>
+<div class="menu-item itemm" data-name="chips or fries"><button onclick="addItem(this, 11000)">k11000. ADD</button></div>
+<div class="menu-item itemn" data-name="pizza"><button onclick="addItem(this, 15500)">k15500. ADD</button></div>
+<div class="menu-item itemo" data-name="noodles or sparghetti"><button onclick="addItem(this, 3000)">k3000. ADD</button></div>
+<div class="menu-item itemp" data-name="rice"><button onclick="addItem(this, 6850)">k6850. ADD</button></div>
 </div>
 </div>
 <button class="btn" onclick="goToCart()">View Items</button></div>
 <div id="popup">Item Added</div>
 <script>
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function addItem(price){
-  cart.push(price);
-let popup = document.getElementById("popup");
-popup.innerText = "Added: k" + price;
+function addItem(button, price) {
+  const itemDiv = button.closest(".menu-item");
+  const name = itemDiv.dataset.name;
 
-popup.style.opacity = "1";
+  cart.push({ name, price });
+  localStorage.setItem("cart", JSON.stringify(cart));
 
-setTimeout(() => {
-  popup.style.opacity = "0";
-}, 2000);}
+  // popup feedback
+  let popup = document.getElementById("popup");
+  if (popup) {
+    popup.innerText = "Added: " + name + " (k" + price + ")";
+    popup.style.opacity = "1";
+    setTimeout(() => {
+      popup.style.opacity = "0";
+    }, 2000);
+  }
+}
 </script>
 <script>
 function goToCart(){
