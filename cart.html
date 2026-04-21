@@ -207,13 +207,13 @@ function removeItem(index) {
 }
 
 
-  function placeOrder() {
+ function placeOrder() {
   if (cart.length === 0) {
     alert("Cart is empty");
     return;
   }
 
-  fetch("http://localhost:3000/order", {
+  fetch("http://127.0.0.1:3000/order", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -231,7 +231,7 @@ function removeItem(index) {
     alert("Server not reachable ❌");
     console.log(err);
   });
-}
+} 
 
 renderCart();
 </script>
