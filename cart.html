@@ -222,8 +222,7 @@ function removeItem(index) {
   })
   .then(res => res.text())
   .then(data => {
-    alert("Order sent to server ✔");
-
+    alert(data);
     localStorage.removeItem("cart");
     cart = [];
     renderCart();
@@ -232,7 +231,7 @@ function removeItem(index) {
     alert("Server not reachable ❌");
     console.log(err);
   });
-  }
+}
 
 renderCart();
 </script>
