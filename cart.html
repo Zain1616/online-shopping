@@ -150,40 +150,70 @@ border: 1px solid black;
     <button id="placeOrderBtn" onclick="placeOrder()">Place Order</button>
   </div>
 </div>
-
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let total = 0;
-let itemsDiv = document.getElementById("items");
+function renderCart() {
+  let itemsDiv = document.getElementById("items");
+  let total = 0;
 
-itemsDiv.innerHTML = "";
+  itemsDiv.innerHTML = "";
 
-cart.forEach(item => {
-  if (!item || !item.name || !item.price) return;
+  cart.forEach((item, index) => {
+    if (!item || !item.name || !item.price) return;
 
-  let p = document.createElement("p");
-  p.innerText = item.name + " — K" + item.price;
+    let div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.justifyContent = "space-between";
+    div.style.alignItems = "center";
+    div.style.width = "100%";
 
-  itemsDiv.appendChild(p);
-  total += Number(item.price);
-});
+    let p = document.createElement("p");
+    p.innerText = item.name + " — K" + item.price;
 
-document.getElementById("total").innerText = "Total: K" + total;
+    let btn = document.createElement("button");
+    btn.innerText = "Remove";
+    btn.style.background = "red";
+    btn.style.color = "white";
+    btn.style.border = "none";
+    btn.style.padding = "5px 10px";
+    btn.style.borderRadius = "5px";
 
- document.getElementById("date").innerText =
-  "Date & Time: " + new Date().toLocaleString();
-  
-  function placeOrder(){
-  if(cart.length === 0){
+    btn.onclick = function () {
+      removeItem(index);
+    };
+
+    div.appendChild(p);
+    div.appendChild(btn);
+    itemsDiv.appendChild(div);
+
+    total += Number(item.price);
+  });
+
+  document.getElementById("total").innerText = "Total: K" + total;
+  document.getElementById("date").innerText =
+    "Date & Time: " + new Date().toLocaleString();
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+
+function placeOrder() {
+  if (cart.length === 0) {
     alert("Cart is empty");
     return;
   }
 
   alert("Order placed successfully!");
-  location.reload();
-  }
-</script>
+  localStorage.removeItem("cart");
+  cart = [];
+  renderCart();
+}
 
+renderCart();
+</script>
 </body>
 </html>
