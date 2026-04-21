@@ -32,6 +32,7 @@ border-radius: 15px;
 justify-content: center;
 align-items: center;
 border: 1px solid green;
+z-index: 9999;  
 }
 .btn:hover{
 transform: scale(1.05);
@@ -429,10 +430,10 @@ function addItem(button, price) {
   cart.push({ name, price });
   localStorage.setItem("cart", JSON.stringify(cart));
 
-  // popup feedback
+  
   let popup = document.getElementById("popup");
   if (popup) {
-    popup.innerText = "Added: " + name + " (k" + price + ")";
+    popup.innerText = "Added ✔ Price: k" + price;
     popup.style.opacity = "1";
     setTimeout(() => {
       popup.style.opacity = "0";
