@@ -1,124 +1,127 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cart</title>
+<title>Cart</title>
+
 <style>
 body{
-background-color: wheat;
-}
-.container{
-height: 100vh;
-width: 100vw;
-overflow-x: hidden;
-overflow-y: hidden;
-display: flex;
-justify-items: center;
-align-items: center;
-flex-direction: column;
-}
-.header{
-align-items: center;
-display: flex;
-background-color: rgb(228, 0, 43);
-height: 15%;
-width: 100%;
-margin-top: 0px;
-}
-.blocks{
-border: 2px solid black;
-display: flex;
-flex-direction: column;
-height: 40%:
-width: 100%;
-margin-bottom: 5px;
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: wheat;
-}
-.block1, block2{
-display: flex;
-gap: 80px;
-height: 70%;
-width: 100%;
+  background-color: wheat;
+  margin: 0;
 }
 
-.top{
-height: 40px;
-width: 100%;
-display: flex;
+.container{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header{
+  display: flex;
+  align-items: center;
+  background-color: rgb(228, 0, 43);
+  height: 15%;
+  width: 100%;
 }
 
 .logo{
-background-image: url("https://mail.toppng.com/uploads/preview/kfc-logo-png-transparent-background-photoshop-11660168874txq8ipsxve.png");
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-height: 100%;
-width: 20%;
+  background-image: url("https://mail.toppng.com/uploads/preview/kfc-logo-png-transparent-background-photoshop-11660168874txq8ipsxve.png");
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 20%;
 }
+
+.search{
+  margin-left: auto;
+  margin-right: 20px;
+  height: 40px;
+  width: 200px;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.receipt{
+  background-color: white;
+  height: auto;
+  width: 450px;
+  margin-top: 20px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.top{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .chef{
-background-image: url("https://static.vecteezy.com/system/resources/thumbnails/052/793/073/small/chef-logo-design-vector.jpg");
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-height: 100%;
-width: 30%;
+  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/052/793/073/small/chef-logo-design-vector.jpg");
+  background-size: cover;
+  height: 50px;
+  width: 50px;
 }
+
+#items p{
+  margin: 5px 0;
+}
+
 #total{
   font-size: 24px;
   font-weight: bold;
   color: green;
 }
-.search{
-margin-left: auto;
-height: 10%;
-width: 20%;
-background-color: white;
-color: black;
-border-radius: 15px;
-padding: 10px;
-}
-.receipt{
-background-color: white;
-height: 500px;
-width: 450px;
-display: flex;
-justify-items: center;
-align-items: center;
-flex-direction: column;
-border: 1px solid black;
+
+.blocks{
+  width: 100%;
+  margin-top: 10px;
 }
 
+.block1, .block2{
+  display: flex;
+  justify-content: space-between;
+}
 </style>
 </head>
+
 <body>
+
 <div class="container">
-<div class="header">
-<div class="logo"></div>
-<input class="search" type="search" placeholder="search"/>
+  <div class="header">
+    <div class="logo"></div>
+    <input class="search" type="search" placeholder="search">
+  </div>
+
+  <div class="receipt">
+    <div class="top">
+      <div class="chef"></div>
+      <h1>Your Selected Items</h1>
+    </div>
+
+    <div id="items"></div>
+    <h2 id="total"></h2>
+
+    <div class="blocks">
+      <div class="block1">
+        <p>Date: 28 April 2026</p>
+        <p>Signature: ............</p>
+      </div>
+      <div class="block2">
+        <p>Tel: +265 981694719</p>
+        <p>Email: Kum@gmail.com</p>
+      </div>
+    </div>
+
+    <p>Thank you for ordering with us</p>
+    <div class="chef"></div>
+  </div>
 </div>
-<div class="receipt">
-<div class="top">
-<div class="chef"></div>
-<h1>Your Selected Items</h1>
-</div>
-<div id="items"></div>
-<h2 id="total"></h2>
-<div class="blocks">
-<div class="block1">
-<p>Date: 28 April 2026</p>
-<p>Signature:..............</p>
-</div>
-<div class="block2">
-<p>Tel: +265 981694719 </p>
-<p>Gmail: Kum@gmail.com</p>
-</div>
-</div>
-<p>Thank you for ordering with us</p>
-<div class="chef"></div>
-</div>
-</div>
+
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -127,63 +130,12 @@ let itemsDiv = document.getElementById("items");
 
 cart.forEach(price => {
   let p = document.createElement("p");
-  p.innerText = "Item: k" + price;
+  p.innerText = "Item: K" + price;
   itemsDiv.appendChild(p);
   total += price;
 });
 
-document.getElementById("total").innerText = "Total: k" + total;
-</script>
-
-</body>
-</html>
-  .receipt{
-    width: 95%;
-  }
-}
-</style>
-</head>
-<body>
-<div class="container">
-<div class="header">
-<div class="logo"></div>
-<input class="search" type="search" placeholder="search"/>
-</div>
-<div class="receipt">
-<div class="top">
-<div class="chef"></div>
-<h1>Your Selected Items</h1>
-</div>
-<div id="items"></div>
-<h2 id="total"></h2>
-<div class="blocks">
-<div class="block1">
-<p>Date: 28 April 2026</p>
-<p>Signature:..............</p>
-</div>
-<div class="block2">
-<p>Tel: +265 981694719 </p>
-<p>Gmail: Kum@gmail.com</p>
-</div>
-</div>
-<p>Thank you for ordering with us</p>
-<div class="chef"></div>
-</div>
-</div>
-<script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-let total = 0;
-let itemsDiv = document.getElementById("items");
-
-cart.forEach(price => {
-  let p = document.createElement("p");
-  p.innerText = "Item: k" + price;
-  itemsDiv.appendChild(p);
-  total += price;
-});
-
-document.getElementById("total").innerText = "Total: k" + total;
+document.getElementById("total").innerText = "Total: K" + total;
 </script>
 
 </body>
