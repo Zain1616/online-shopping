@@ -160,10 +160,13 @@ let itemsDiv = document.getElementById("items");
 itemsDiv.innerHTML = "";
 
 cart.forEach(item => {
+  if (!item || !item.name || !item.price) return;
+
   let p = document.createElement("p");
   p.innerText = item.name + " — K" + item.price;
+
   itemsDiv.appendChild(p);
-  total += item.price;
+  total += Number(item.price);
 });
 
 document.getElementById("total").innerText = "Total: K" + total;
@@ -178,7 +181,6 @@ document.getElementById("total").innerText = "Total: K" + total;
   }
 
   alert("Order placed successfully!");
-  localStorage.removeItem("cart");
   location.reload();
   }
 </script>
