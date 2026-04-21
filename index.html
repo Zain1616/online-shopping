@@ -386,7 +386,7 @@ transform: scale(1.05);
 <div class="container">
 <div class="header">
 <div class="logo"></div>
-<input class="search" type="search" placeholder="search"/>
+<input id="searchBar" class="search" type="search" placeholder="search"/>
 </div>
 <div class="sections">
 <div class="section1">
@@ -396,22 +396,22 @@ transform: scale(1.05);
  <div class="item4"><button>Pizza</button></div>
 </div>
 <div class="section2">
-<div class="itema"><button onclick="addItem(750)">k750. ADD</button></div>
-<div class="itemb"><button onclick="addItem(300)">k300. ADD</button></div>
-<div class="itemc"><button onclick="addItem(150)">k150. ADD</button></div>
-<div class="itemd"><button onclick="addItem(400)">k400. ADD</button></div>
-<div class="iteme"><button onclick="addItem(19500)">k19500. ADD</button></div>
-<div class="itemf"><button onclick="addItem(8650)">k8650. ADD</button></div>
-<div class="itemg"><button onclick="addItem(3250)">k3250. ADD</button></div>
-<div class="itemh"><button onclick="addItem(1870)">k1870. ADD</button></div>
-<div class="itemi"><button onclick="addItem(750)">k750. ADD</button></div>
-<div class="itemj"><button onclick="addItem(750)">k750. ADD</button></div>
-<div class="itemk"><button onclick="addItem(23600)">k23600. ADD</button></div>
-<div class="iteml"><button onclick="addItem(1300)">k1300. ADD</button></div>
-<div class="itemm"><button onclick="addItem(11000)">k11000. ADD</button></div>
-<div class="itemn"><button onclick="addItem(15500)">k15500. ADD</button></div>
-<div class="itemo"><button onclick="addItem(3000)">k3000. ADD</button></div>
-<div class="itemp"><button onclick="addItem(6850)">k6850. ADD</button></div>
+<div class="menu-item itema" data-name="cabbage"><button onclick="addItem(750)">k750. ADD</button></div>
+<div class="menu-item itemb" data-name="carrot"><button onclick="addItem(300)">k300. ADD</button></div>
+<div class="menu-item itemc" data-name="green pepper"><button onclick="addItem(150)">k150. ADD</button></div>
+<div class="menu-item itemd" data-name="apples"><button onclick="addItem(400)">k400. ADD</button></div>
+<div class="menu-item iteme" data-name="chicken"><button onclick="addItem(19500)">k19500. ADD</button></div>
+<div class="menu-item itemf" data-name="sausage"><button onclick="addItem(8650)">k8650. ADD</button></div>
+<div class="menu-item itemg" data-name="eggs"><button onclick="addItem(3250)">k3250. ADD</button></div>
+<div class="menu-item itemh" data-name="fish"><button onclick="addItem(1870)">k1870. ADD</button></div>
+<div class="menu-item itemi" data-name="fanta or coca-cola or coke"><button onclick="addItem(750)">k750. ADD</button></div>
+<div class="menu-item itemj" data-name="fanta or orange"><button onclick="addItem(750)">k750. ADD</button></div>
+<div class="menu-item itemk" data-name="champagne"><button onclick="addItem(23600)">k23600. ADD</button></div>
+<div class="menu-item iteml" data-name="ice cream"><button onclick="addItem(1300)">k1300. ADD</button></div>
+<div class="menu-item itemm" data-name="chips or fries"><button onclick="addItem(11000)">k11000. ADD</button></div>
+<div class="menu-item itemn" data-name="pizza"><button onclick="addItem(15500)">k15500. ADD</button></div>
+<div class="menu-item itemo" data-name="noodles or sparghetti"><button onclick="addItem(3000)">k3000. ADD</button></div>
+<div class="menu-item itemp" data-name="rice"><button onclick="addItem(6850)">k6850. ADD</button></div>
 </div>
 </div>
 <button class="btn" onclick="goToCart()">View Items</button></div>
@@ -436,7 +436,19 @@ function goToCart(){
   window.location.href = "cart.html";
 }
 </script>
+<script>
+const searchBar = document.getElementById("searchBar");
 
+searchBar.addEventListener("input", function () {
+  const query = searchBar.value.toLowerCase();
+  const items = document.querySelectorAll(".menu-item");
+
+  items.forEach(item => {
+    const name = item.dataset.name.toLowerCase();
+    item.style.display = name.includes(query) ? "block" : "none";
+  });
+});
+</script>
 </body>
 </html>
 
