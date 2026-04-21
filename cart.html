@@ -1,0 +1,158 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html>
+<head>
+  <title>Cart</title>
+<style>
+body{
+  margin: 0;
+  background-color: wheat;
+}
+
+.container{
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header{
+  display: flex;
+  align-items: center;
+  background-color: rgb(228, 0, 43);
+  width: 100%;
+  padding: 10px;
+}
+
+.logo{
+  background-image: url("https://mail.toppng.com/uploads/preview/kfc-logo-png-transparent-background-photoshop-11660168874txq8ipsxve.png");
+  background-size: cover;
+  background-position: center;
+  height: 60px;
+  width: 120px;
+}
+
+.search{
+  margin-left: auto;
+  width: 200px;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.receipt{
+  background-color: white;
+  width: 90%;
+  max-width: 450px;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chef{
+  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/052/793/073/small/chef-logo-design-vector.jpg");
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+}
+
+#total{
+  font-size: 22px;
+  font-weight: bold;
+  color: green;
+}
+
+.blocks{
+  width: 100%;
+  margin-top: 10px;
+}
+
+.block1, .block2{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5px 0;
+}
+
+@media (max-width: 600px){
+  .header{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search{
+    width: 90%;
+    margin-top: 10px;
+  }
+
+  .top{
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .block1, .block2{
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+
+  .receipt{
+    width: 95%;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<div class="logo"></div>
+<input class="search" type="search" placeholder="search"/>
+</div>
+<div class="receipt">
+<div class="top">
+<div class="chef"></div>
+<h1>Your Selected Items</h1>
+</div>
+<div id="items"></div>
+<h2 id="total"></h2>
+<div class="blocks">
+<div class="block1">
+<p>Date: 28 April 2026</p>
+<p>Signature:..............</p>
+</div>
+<div class="block2">
+<p>Tel: +265 981694719 </p>
+<p>Gmail: Kum@gmail.com</p>
+</div>
+</div>
+<p>Thank you for ordering with us</p>
+<div class="chef"></div>
+</div>
+</div>
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let total = 0;
+let itemsDiv = document.getElementById("items");
+
+cart.forEach(price => {
+  let p = document.createElement("p");
+  p.innerText = "Item: k" + price;
+  itemsDiv.appendChild(p);
+  total += price;
+});
+
+document.getElementById("total").innerText = "Total: k" + total;
+</script>
+
+</body>
+</html>
