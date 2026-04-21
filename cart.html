@@ -127,7 +127,7 @@ border: 1px solid black;
 
     <div class="blocks">
       <div class="block1">
-        <p>Date: 28 April 2026</p>
+        <p id="date"></p>
         <p>Signature: ............</p>
       </div>
       <div class="block2">
@@ -147,14 +147,19 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let total = 0;
 let itemsDiv = document.getElementById("items");
 
-cart.forEach(price => {
+itemsDiv.innerHTML = "";
+
+cart.forEach(item => {
   let p = document.createElement("p");
-  p.innerText = "Item: K" + price;
+  p.innerText = item.name + " — K" + item.price;
   itemsDiv.appendChild(p);
-  total += price;
+  total += item.price;
 });
 
 document.getElementById("total").innerText = "Total: K" + total;
+
+ document.getElementById("date").innerText =
+  "Date & Time: " + new Date().toLocaleString();
 </script>
 
 </body>
