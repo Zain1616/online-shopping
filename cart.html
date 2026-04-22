@@ -128,6 +128,14 @@ border: 1px solid black;
   display: flex;
   justify-content: space-between;
 }
+@media (max-width: 600px) {
+  .receipt {
+    width: 92%;
+    max-width: none;
+    height: auto;
+  }
+}
+  
 </style>
 </head>
 
@@ -158,25 +166,7 @@ border: 1px solid black;
         <p>Email: Kum@gmail.com</p>
       </div>
 
-   <img 
-  onclick="contactUs()"
-  style="
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 55px;
-    height: 55px;
-    cursor: pointer;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    background: #25D366;
-    padding: 10px;
-  "
-  src="data:image/svg+xml;utf8,
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>
-    <path fill='white' d='M19.11 17.47c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.74.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.16-.28-.02-.43.12-.57.12-.12.28-.33.42-.5.14-.17.19-.28.28-.46.09-.19.05-.35-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.35-.26.28-1 .98-1 2.39s1.02 2.77 1.16 2.96c.14.19 2.02 3.08 4.89 4.32.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z'/>
-  </svg>"
-/>   
+
     </div>
 
     <p>Thank you for ordering with us</p>
@@ -191,6 +181,21 @@ border: 1px solid black;
     <button id="placeOrderBtn" onclick="placeOrder()">Place Order</button>
     <button onclick="clearCart()" style="background:red; color:white; padding:10px; width:100%; border:none; border-radius:8px; margin-top:10px;">Remove All ❌</button>
   </div>
+
+<img 
+  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+  onclick="contactUs()"
+  style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 65px;
+    height: 75px;
+    cursor: pointer;
+  "
+/>
+
+  
 </div>
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
