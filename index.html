@@ -344,20 +344,18 @@ transform: scale(1.05);
 
 @media (max-width: 600px){
   .sections{
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr;
   }
 
   .section1{
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     height: auto;
     gap: 10px;
     padding: 10px 0;
-    overflow-y: auto;
   }
   
   .section2{
-    grid-template-columns: repeat(4, 1fr);
-  overflow-x: auto;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
   .header{
