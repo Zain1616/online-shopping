@@ -19,6 +19,20 @@ body{
   border: none;
   border-radius: 8px;
 }
+
+
+
+input{
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+  
 .container{
   height: 100vh;
   width: 100vw;
@@ -148,8 +162,12 @@ border: 1px solid black;
     <p>Thank you for ordering with us</p>
     <div class="chef"></div>
 
-    <input id="customerName" placeholder="Customer Name" />
-<input id="houseNo" placeholder="House Number" />
+    <div style="width:100%; margin-top:10px;">
+  <input id="customerName" placeholder="Customer Name" />
+  <input id="houseNo" placeholder="House Number" />
+</div>
+
+    
     <button id="placeOrderBtn" onclick="placeOrder()">Place Order</button>
     <button onclick="clearCart()" style="background:red; color:white; padding:10px; width:100%; border:none; border-radius:8px; margin-top:10px;">Remove All ❌</button>
   </div>
@@ -217,7 +235,10 @@ function placeOrder() {
 
   const name = document.getElementById("customerName").value;
   const house = document.getElementById("houseNo").value;
-
+if (!name || !house) {
+  alert("Please enter customer name and house number");
+  return;
+}
   fetch("https://wtf8kqtrstge.share.zrok.io/order", {
     method: "POST",
     headers: {
