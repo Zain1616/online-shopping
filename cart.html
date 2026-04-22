@@ -275,6 +275,10 @@ function placeOrder() {
   const name = document.getElementById("customerName").value;
   const house = document.getElementById("houseNo").value;
 if (!name || !house) {
+  alert("Please enter customer name and house number");
+  return;
+}
+
 fetch("https://mw0qtfkmzdwt.share.zrok.io/order", {
   method: "POST",
   headers: {
@@ -297,7 +301,7 @@ fetch("https://mw0qtfkmzdwt.share.zrok.io/order", {
   alert("Server not reachable ❌");
   console.log(err);
 });
-
+  }
   function contactUs() {
   let phone = "265981694719";
 
