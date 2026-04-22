@@ -48,7 +48,12 @@ input{
   height: 15%;
   width: 100%;
 }
-
+#customerName,
+#houseNo {
+  font-size: 18px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  padding: 12px;
+}
 .logo{
   background-image: url("https://mail.toppng.com/uploads/preview/kfc-logo-png-transparent-background-photoshop-11660168874txq8ipsxve.png");
   background-size: cover;
@@ -67,7 +72,14 @@ input{
 }
 
 
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-12px); }
+}
 
+#whatsappBtn {
+  animation: bounce 1.5s infinite;
+}
 
   
 .zain{
@@ -170,26 +182,28 @@ border: 1px solid black;
     <p>Thank you for ordering with us</p>
     <div class="chef"></div>
 
-    <div style="width:90%; margin-top:10px; font-size: 16px; box-shadow: 0px 0px 15px darkgrey;">
-  <input id="customerName" placeholder="Customer Name" />
-  <input id="houseNo" placeholder="House Number" />
+<div style="width:90%; margin-top:10px;">
+  <input id="customerName" placeholder="Customer Name">
+  <input id="houseNo" placeholder="House Number">
 </div>
 
     
     <button id="placeOrderBtn" onclick="placeOrder()">Place Order</button>
     <button onclick="clearCart()" style="background:red; color:white; padding:10px; width:100%; border:none; border-radius:8px; margin-top:10px;">Remove All ❌</button>
   </div>
-<div class="blocks block1">
+
 <img 
+  id="whatsappBtn"
   src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
   onclick="contactUs()"
   style="
     position: fixed;
     bottom: 20px;
-    right: 20px;
-    width: 100px;
-    height: 120px;
+    left: 50%;
+    width: 80px;
+    height: 80px;
     cursor: pointer;
+    z-index: 9999;
   "
 />
 </div>
@@ -288,12 +302,33 @@ if (!name || !house) {
 
   function contactUs() {
   let phone = "265981694719";
-  let message = "Hello 👋 I would like to place my order.";
 
-  let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
+  const name = document.getElementById("customerName").value;
+  const house = document.getElementById("houseNo").value;
+
+  if (!name || !house) {
+    alert("Enter name and house number first");
+    return;
   }
 
+  let orderText = cart.map(item =>
+    `${item.name} - K${item.price}`
+  ).join("\n");
+
+  let message = `🛒 NEW ORDER
+
+👤 Name: ${name}
+🏠 House: ${house}
+
+📦 Items:
+${orderText}
+
+💰 Total: K${cart.reduce((a,b)=>a+Number(b.price),0)}`;
+
+  let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, "_blank");
+}
 renderCart();
 </script>
 </body>
