@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cart</title>
 
 <style>
@@ -73,8 +74,8 @@ input{
 
 
 @keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-12px); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 #whatsappBtn {
@@ -142,12 +143,12 @@ border: 1px solid black;
 }
 @media (max-width: 600px) {
   .receipt {
-    width: 600px;
+    width: 92%;
     max-width: none;
-    height: 550px;
-    font-size: 16px;
+    height: auto;
   }
 }
+
   
 </style>
 </head>
@@ -197,14 +198,15 @@ border: 1px solid black;
   src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
   onclick="contactUs()"
   style="
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    z-index: 9999;
-  "
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  z-index: 9999;
+"
 />
 </div>
   
