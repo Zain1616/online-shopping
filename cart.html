@@ -275,32 +275,28 @@ function placeOrder() {
   const name = document.getElementById("customerName").value;
   const house = document.getElementById("houseNo").value;
 if (!name || !house) {
-  alert("Please enter customer name and house number");
-  return;
-}
-  fetch("https://wtf8kqtrstge.share.zrok.io/order", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      customerName: name,
-      houseNumber: house,
-      items: cart
-    })
+fetch("https://mw0qtfkmzdwt.share.zrok.io/order", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    customerName: name,
+    houseNumber: house,
+    items: cart
   })
-  .then(res => res.text())
-  .then(data => {
-    alert(data);
-    localStorage.removeItem("cart");
-    cart = [];
-    renderCart();
-  })
+})
+.then(res => res.text())
+.then(data => {
+  alert(data);
+  localStorage.removeItem("cart");
+  cart = [];
+  renderCart();
+})
 .catch(err => {
-    alert("Server not reachable ❌");
-    console.log(err);
-  });
-}
+  alert("Server not reachable ❌");
+  console.log(err);
+});
 
   function contactUs() {
   let phone = "265981694719";
